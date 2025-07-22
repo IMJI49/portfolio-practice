@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>임지훈 - 자바 풀스택 개발자 portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/response.css">
+</head>
+<body>
+    <p id="home"></p>
+    <div class="container">
+        <div class="navi">
+            <!--네이게이션 메뉴 바-->
+            <nav class="navibar">
+                <div class="nav_logo">
+                    <div class="logo-image">
+                    <a href=""><img src="images/38-50x50.jpg" alt="로고" onclick="" id="logo"><br>
+                    </a>
+                    </div>
+                    <div class="port_name">
+                        <h1>임지훈</h1>
+                    </div>
+                    <button class="btn-follow"> 팔로우 버튼</button>
+                </div>
+                <div id="nav-menu">
+                    <input type="checkbox" id="menu-toggle">
+                    <label for="menu-toggle" class="menu-button">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </label>
+                    <ul class="nav_menu">
+                    <!-- 앵커 링크 spa처럼 섹션 이동 -->
+                        <li><a href="#home">홈</a></li>
+                        <li><a href="#about">소개</a></li>
+                        <li><a href="#skills">기술</a></li>
+                        <li><a href="#proj">프로젝트</a></li>
+                        <li><a href="#contact">연락처</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+
+        <div class="content">
+            <!-- 메인 화면 -->
+            <section class="main" >
+                <div class="main-container">
+                    <div class="main-text">
+                        <div class="main-content">
+                            <h3 class="main-title">안녕하세요 저는 자바 풀스택 개발자  <span class="highlight">임지훈</span>입니다.</h3>
+                            <h4 class="main-subtitle">Java FullStack</h4>
+                            <p class="main-description">사용자 경험을 중시하며 클린하고 효율적인 코드를 작성하기 위해 노력합니다.</p>
+                        </div>
+                        <div class="main-description">
+                            <p></p>
+                            <div class="main-buttons">
+                                <button class="btn-project" onclick="">프로젝트 보기</button>
+                                <button class="btn-resume" onclick="">이력서 보기</button>
+                            </div>
+                            <div class="social-links">
+                                <button class="btn-social social-link1" onclick=""><a href="https://github.com/IMJI49">🐈‍⬛github</a></button>
+                                <button class="btn-social social-link2" onclick=""><a href="">🔗links</a></button>
+                                <button class="btn-social social-link3" onclick=""><a href="mailto:ansml4956@gmail.com">📧email</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-image">
+                        <img src="images/KakaoTalk_20250720_163730421.jpg" alt="프로필 사진" class="profile-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="about" id="about">
+                <div class="about-container">
+                    <h2>소개</h2>
+                    <p> 사용자 경험을 중시하며 효율적인 코드 작성을 위해 노력하는 개발자 <span class="highlight">임지훈</span>이라고 합니다.</p>
+                    <p>지금까지 완성 프로젝트 수는 총 4개이며 깃허브 팔로워 숫자는 15명 입니다.</p>
+                    <p>Github에 커밋 수는 총 7개입니다.</p>
+                    <p>지금까지 중앙학원 <span id="study_day"></span>입니다.</p>
+                </div>
+            </section>
+            <section class="skills" id="skills">
+                
+                <div class="skill-container">
+                    <h2>기술</h2>
+                    <div class="skill1">
+                        <input type="checkbox"id="HTML5"  onclick = "clickalert('HTML5')">
+                            <label for="HTML5">
+                                HTML5
+                            </label>
+                    </div>
+                    <div class="skill2">
+                        <input type="checkbox"id="css3" >
+                            <label for="css3" onclick = "clickalert('CSS3')">
+                                CSS3
+                        </label>
+                    </div>
+                    <div class="skill3">
+                        <input type="checkbox"id="Java" >
+                            <label for="Java" onclick = "clickalert('Java')">
+                                Java
+                            </label>
+                    </div>
+                    <div class="skill4">
+                        <input type="checkbox"id="JavaScript" >
+                            <label for="JavaScript" onclick = "clickalert('JavaScript')">
+                                JavaScript
+                            </label>
+                    </div>
+                    <div class="skill5">
+                        <input type="checkbox"id="SQL" >
+                            <label for="SQL" onclick = "clickalert('SQL')">
+                                SQL
+                            </label>
+                    </div>
+                    <div class="skill6">
+                        <input type="checkbox"id="JDBC" >
+                            <label for="JDBC" onclick = "clickalert('JDBC')">
+                                JDBC
+                            </label>
+                    </div>
+                    <div class="skill7">
+                        <input type="checkbox"id="AWS" >
+                            <label for="AWS"    onclick = "clickalert('AWS')">
+                                AWS
+                            </label>
+                    </div>
+                    <div class="skill8">
+                        <input type="checkbox"id="Spring" >
+                            <label for="Spring" onclick = "clickalert('Spring')">
+                                Spring
+                            </label>
+                    </div>
+                </div>
+            </section>
+            <section class="project" id="proj">
+                
+                <div class="project-container">
+                    <h2>프로젝트</h2>
+                    <div class="project-image1">
+                        <img src="images/포트폴리오.jpg" alt="프로젝트1" class="image1"> 
+                    </div>
+                    <div class="project-description1">
+                        <p>
+                        포트폴리오
+                        2025.06.27~2025.07.25
+                        포트폴리오 작성 CSS및 자바 스크립트 활용
+                        </p>
+                    </div>
+                    
+                    <div class="project-image2">
+                        <img src="images/96-4752x3168.jpg" alt="프로젝트2" class="image2">
+                    </div>
+                    <div class="project-description2">
+                        <p>
+                            백엔드 팀 프로젝트 1
+                            2025.09.05~2025.10.17
+                            Java및 Spring 활용
+                        </p>
+                    </div>
+                    
+                    <div class="project-image3">
+                        <img src="images/723-300x200.jpg" alt="프로젝트3" class="image3"> 
+                    </div>
+                    <div class="project-description3">
+                        <p>
+                            백엔드 팀 프로젝트 2
+                            2025.10.24~2025.12.12
+                            SQL및 JDBC활용
+                        </p>
+                    </div>
+                    
+                </div>
+            </section>
+            <section class="contact" id="contact">
+                <h2>연락처</h2>
+                <p>이메일 : <a href="mailto:ansml4956@gmail.com">ansml4956@gmail.com</a>
+                <br> 전화 걸기 : <a href="tel:+82-10-7231-1938">010-7231-1938</a><br>
+                <a href="https://github.com/IMJI49">Github</a></p>
+            </section>
+        </div>
+        
+    </div>
+    <footer>
+        <p>
+            &copy; 2025 임지훈 모든 권리 보유.
+        </p>
+        <div class="footer-social">
+            <button onclick="" class="btn1-footer"><a href="https://github.com/IMJI49">🐈‍⬛Git</a></button>
+            <button onclick="" class="btn1-footer"><a href="">🔗linkedin</a></button>
+            <button onclick="" class="btn1-footer"><a href="mailto:ansml4956@gmail.com">📧email</a></button>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/animation.js"></script>
+</body>
+</html>

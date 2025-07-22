@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hamburger Menu animate</title>
+    <style>
+      .pv-box {
+        border: 1px solid black;
+        padding: 10px;
+      }
+
+      .container {
+        height: 150px;
+        background-color: burlywood;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .menu {
+        cursor: pointer;
+        width: 25px;
+        height: 30px;
+        position: relative;
+      }
+
+      .menu.active .bar {
+        position: absolute;
+      }
+      .menu.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .menu.active .bar:first-child {
+        top: 25%;
+        transform: rotate(45deg);
+      }
+      .menu.active .bar:last-child {
+        top: 25%;
+        transform: rotate(-45deg);
+      }
+
+      .bar {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pv-box">
+      <div class="container">
+        <div class="menu menu-icon" onclick="toggleSidebar()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          
+        </div>
+      </div>
+    </div>
+    <script>
+      function toggleSidebar() {
+        const menu = document.querySelector(".menu");
+        menu.classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

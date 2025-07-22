@@ -1,0 +1,83 @@
+/* 모바일 (최대 767px) */
+@media (max-width: 767px) {
+    html { 
+        font-size: 62.5%; 
+    }
+    .navibar{
+        background: none;
+    }
+    .nav_logo{
+        display: none; /* 모바일에서는 로고 숨김 */
+    }
+    .nav-menu {
+        position: relative;
+        display: block;
+        width: 30px;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .nav_menu {
+        display: none; /* 기본적으로 숨김 */
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--primary-color);
+        width: 100%;
+        padding: 1rem;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+    }
+    .line {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        transition: transform 0.3s ease;
+    }
+    .menu-toggle:checked + .menu-button .line1 {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked + .menu-button .line2 {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked + .menu-button .line3 {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .menu-toggle:checked ~ .menu-items {
+        display: block; /* 체크박스가 checked일 때 메뉴 표시 */
+    }
+}
+/* 태블릿 (768px ~ 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    html { 
+        font-size: 80%; 
+    }
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .nav_menu {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: center;
+        gap: 1rem; /* 간격 조정 */
+    }
+    .hamburger {
+        display: none; /* 태블릿에서는 햄버거 메뉴 숨김 */
+    }
+}
+
+/* 데스크톱 (1024px 이상) */
+@media (min-width: 1024px) {
+    .nav_menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem; /* 간격 조정 */
+    }
+    .hamburger {
+        display: none; /* 데스크톱에서는 햄버거 메뉴 숨김 */
+    }
+}
