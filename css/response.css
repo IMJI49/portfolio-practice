@@ -17,6 +17,9 @@
     .menu-toggle {
         display: none;
     }
+    .navibar.blur{
+        display: none;
+    }
     .nav_menu {
         display: none; /* 기본적으로 숨김 */
         position: absolute;

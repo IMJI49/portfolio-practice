@@ -1,10 +1,4 @@
-/* 전역 변수 리셋 */
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-sizing: border-box;
-}
+
 /* 전역에서 사용할 CSS 변수 설정 - 색상값 정의, 일관성 향상 */
 :root{
     --primary-color : #0a1029;
@@ -13,10 +7,16 @@
     --second-color : #69e4a0;
     --third-color : #f7c6c7;
     --fourth-color : #ebf18d;
-    --light : #dfe2fc;
+    --light : #f1f1f1;
     --text-color : rgb(2,7,21);
 }
-/* 스크롤 시 상단 네비게이션 바에 블러 효과 적용 */
+/* 전역 변수 리셋 */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
 
 body{
     /* color: var(--text-color); css 변수 사용 */
@@ -50,6 +50,7 @@ ul{
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0 8rem;
+    padding-right: 12rem;
     height: 9rem;
     justify-content: space-between;
     align-items: center;
@@ -88,6 +89,10 @@ ul{
     height: 2rem;
     border-radius: 20px;
     position: relative;
+}
+.menu-box.blur {
+    background: transparent;
+    color: var(--text-color);
 }
 .nav_menu a:hover {
     color: #000;
@@ -128,6 +133,30 @@ section{
 }
 .content{
     min-height: 70vh;
+}
+/* 다크 모드 설정*/
+.dark-mode {
+    background-color: #181818;
+    color: #f1f1f1;
+}
+.dark-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 999;
+    border-radius: 40px;
+    border: none;
+    padding: 1rem 0.3rem;
+    background: var(--light);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+.dark-mode .container,
+.dark-mode .content,
+.dark-mode footer {
+    background-color: var(--primary-color);
+    color: var(--light);
 }
 .main{
     margin-top: 70px;

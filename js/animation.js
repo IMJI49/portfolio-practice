@@ -9,14 +9,28 @@ document.querySelectorAll('.navibar a').forEach(anchor => {
         }
     });
 });
-// 햄버거 메뉴 트리거
-var burger = $('.menu-trigger');
 
-burger.each(function(index){
-  var $this = $(this);
-  
-  $this.on('click', function(e){
-    e.preventDefault();
-    $(this).toggleClass('active-' + (index+1));
-  })
+// 다크 모드 토글
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('darkModeToggle');
+    toggleBtn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        if(document.body.classList.contains('dark-mode')) {
+            toggleBtn.textContent = '☀️ 라이트모드';
+        } else {
+            toggleBtn.textContent = '🌙 다크모드';
+        }
+    });
+    
+});
+document.addEventListener('keydown', function(event) {
+    if (event.key === '0') {
+        document.body.classList.toggle('dark-mode');
+        const toggleBtn = document.getElementById('darkModeToggle');
+        if(document.body.classList.contains('dark-mode')) {
+            toggleBtn.textContent = '☀️ 라이트모드';
+        } else {
+            toggleBtn.textContent = '🌙 다크모드';
+        }
+    }
 });

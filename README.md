@@ -85,14 +85,16 @@
                     </div>
                     <button class="btn-follow"> 팔로우 버튼</button>
                 </div>
-                <ul class="nav_menu">
+                <div id="nav-menu">
+                    <ul class="nav_menu">
                     <!-- 앵커 링크 spa처럼 섹션 이동 -->
-                    <li><a href="#home">홈</a></li>
-                    <li><a href="#about">소개</a></li>
-                    <li><a href="#skills">기술</a></li>
-                    <li><a href="#proj">프로젝트</a></li>
-                    <li><a href="#contact">연락처</a></li>
-                </ul>
+                        <li><a class="menu-box" href="#home">홈</a></li>
+                        <li><a class="menu-box" href="#about">소개</a></li>
+                        <li><a class="menu-box" href="#skills">기술</a></li>
+                        <li><a class="menu-box" href="#proj">프로젝트</a></li>
+                        <li><a class="menu-box" href="#contact">연락처</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
         
@@ -248,6 +250,7 @@
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/animation.js"></script>
 </body>
 </html>
 ```
@@ -265,8 +268,15 @@
 
 1. **CSS 변수 설정**
 ``` CSS
-:root {
-  --main-bg-color: brown;
+:root{
+    --primary-color : #0a1029;
+    --secondary-color : #48285e;
+    --first-color : #3aacc9;
+    --second-color : #69e4a0;
+    --third-color : #f7c6c7;
+    --fourth-color : #ebf18d;
+    --light : #dfe2fc;
+    --text-color : rgb(2,7,21);
 }
 ```
 
@@ -278,27 +288,489 @@
 
 3. **스타일링**
 ```css
+/* 전역 변수 리셋 */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
 
+body{
+    /* color: var(--text-color); css 변수 사용 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+.container{
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+a :visited{
+    color: #000;
+}
+ul{
+    list-style: none;
+}
+.navi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navibar {
+    position: fixed;  /*상단 고정*/
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    top: 0;
+    background: var(--primary-color);
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 8rem;
+    height: 9rem;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+/* 스크롤 시 .navibar에 .blur 클래스가 추가되면 블러 효과 적용 */
+.navibar.blur {
+    background: rgba(0, 0, 0, 0); /* 투명도 있는 배경 */
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    color: #000;
+}
+.btn-follow{
+    cursor: pointer;
+}
+.nav_logo{
+    margin: 1rem 1.5rem;
+}
+.menu ul{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.nav_menu{
+    display: none;
+    align-items: center;
+    gap: 2rem;
+}
+.nav_menu a {
+    text-decoration: none;
+    background: var(--secondary-color);
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+    width: 100%;
+    padding: 1.25rem;
+    height: 2rem;
+    border-radius: 20px;
+    position: relative;
+}
+.menu-box.blur {
+    background: transparent;
+    color: var(--text-color);
+}
+.nav_menu a:hover {
+    color: #000;
+    background: var(--light);
+}
+.nav_menu a::after {
+    content : '';
+    width: 0;
+    height: 2px;
+    position: absolute;
+    background: var(--light);
+    transition: width 0.3s ease;
+    bottom: -5px;
+    left: 0;
+}
+.nav_menu a:hover::after {
+    width: 100%;
+}
+.logo-image{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    height: 3.2rem;
+}
+.logo-name{
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+}
+.btn-follow{
+    margin: 0;
+    font-size: 0.8rem;
+}
+section{
+    padding: 5rem 2rem;
+}
+.content{
+    min-height: 70vh;
+}
+.main{
+    margin-top: 70px;
+    background: linear-gradient(135deg, var(--first-color), var(--second-color));
+    padding: 8rem 0 5rem;
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+}
+.main-container{
+    max-width: 1200px;
+    padding: 0 2rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 15rem;
+    box-sizing: border-box;
+}
+.main-title{
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+.main-subtitle{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.main-description{
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.highlight {
+    /* 그라디언트 텍스트 효과 */
+    background: linear-gradient(45deg, var(--third-color), var(--fourth-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;      /* 텍스트에만 그라디언트 적용 */
+}
+.main-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+.btn-project, .btn-resume {
+    padding: 0.5rem 1rem;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-resume{
+    background: transparent;
+    border: 2px solid white;
+}
+.btn-project:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px #ffffff4d;
+}
+.btn-resume:hover{
+    box-shadow: 0 10px 30px #ffffff4d;
+    background-color:var(--light);
+}
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+.btn-social{
+    height: 90px;
+    width: 90px;
+    border: 2px solid var(--light);
+    font-size: 15px;
+    border-radius: 50%;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+.btn-social:hover{
+    background: #fff;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+.profile-image {
+    width: 226.8px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--third-color), var(--fourth-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    transition: all 0.3s ease;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+}
+.about{
+    background: linear-gradient(125deg, var(--secondary-color) ,var(--second-color) );
+    color: var(--light);
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.about-container{
+    max-width: 1200px;
+    padding: 8rem 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.skills{
+    min-height: 60vh;
+    background: linear-gradient(135deg, var(--second-color), var(--third-color));
+    margin-top: 5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.skill-container{
+    display: grid;
+    padding: 8rem 6rem;
+    max-width: 1200px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 1rem;
+}
+.skill-container h2{
+    grid-column: 1/-1;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+.skill1 label, .skill2 label, .skill3 label, .skill4 label, .skill5 label, .skill6 label, .skill7 label, .skill8 label{
+    padding: 0.8rem;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.skill1 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, #f00 20%, orange );
+    color: blue;
+}
+.skill2 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, orange 30%, yellow );
+    color: #1a1b55;
+}
+.skill3 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, yellow 30%, green );
+    color: magenta;
+}
+.skill4 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, green 50%, blue );
+    color: red;
+}
+.skill5 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, blue 50%, #0e0f37 );
+    color: yellow;
+}
+.skill6 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg,#0e0f37 ,purple );
+    color: green ;
+}
+.skill7 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, purple 50%, #fff );
+    color: #91ff00;
+}
+.skill8 input[type="checkbox"]:checked + label{
+    background: linear-gradient(180deg, #fff 0%, #000 );
+    color: white;
+}
+.project{
+    background: linear-gradient(135deg, var(--third-color), var(--fourth-color));
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+.project-container{
+    padding: 8rem 6rem;
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: repeat(3,18.75rem);
+    grid-template-rows: repeat(3,12.5rem);
+    gap: 1rem;
+}
+.project-container h2{
+    grid-column: 1/-1;
+    text-align: center;
+    font-size: 3rem;
+}
+.project-image1{
+    width: 18.75rem;
+    height: 12.5rem;
+}
+.image1{
+    width: 18.75rem;
+    height: 12.5rem;
+}
+.project-description1{
+    width: 18.75rem;
+    height: 6rem;
+    grid-row: 3/4;
+}
+.project-image2{
+    width: 18.75rem;
+    height: 12.5rem;
+    grid-column: 2/3;
+}
+.image2{
+    width: 18.75rem;
+    height: 12.5rem;
+}
+.project-description2{
+    width: 18.75rem;
+    height: 6rem;
+    grid-row: 3/4;
+}
+.project-image3{
+    width: 18.75rem;
+    height: 12.5rem;
+}
+.image3{
+    width: 18.75rem;
+    height: 12.5rem;
+}
+.project-description3{
+    width: 18.75rem;
+    height: 6rem;
+    grid-row: 3/4;
+}
+.contact{
+    background: linear-gradient(135deg, var(--fourth-color), var(--first-color));
+    margin-top: 5rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 30vh;
+    line-height: 1.5;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.btn1-footer{
+    margin: 2px 6px;
+    padding: 6px;
+}
 ```
 4. **반응형 디자인**
 ``` CSS
-        @media screen and (min-width : 768px) and (max-width : 1023px) {
-            body{
-                background: url(images/bg-dark.jpg) no-repeat fixed;
-                background-size: cover;
-                color: #fff; /* 어두운 배경에 흰색 텍스트 */
-            }
-        }
-        /*
-            3) 모바일 화면 배경
-                - 화면 크기 : 767px 이하
-        */
-        @media screen and (max-width : 767px) {
-            body{
-                background: url(images/bg-small.jpg) no-repeat fixed;
-                background-size: cover;
-                color: #fff; /* 어두운 배경에 흰색 텍스트 */
-            }
+/* 모바일 (최대 767px) */
+@media (max-width: 767px) {
+    html { 
+        font-size: 62.5%; 
+    }
+    .navibar{
+        background: none;
+    }
+    .nav_logo{
+        display: none; /* 모바일에서는 로고 숨김 */
+    }
+    .nav-menu {
+        position: relative;
+        display: block;
+        width: 30px;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .nav_menu {
+        display: none; /* 기본적으로 숨김 */
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--primary-color);
+        width: 100%;
+        padding: 1rem;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+    }
+    .line {
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: black;
+        transition: transform 0.3s ease;
+    }
+    .menu-toggle:checked + .menu-button .line1 {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked + .menu-button .line2 {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked + .menu-button .line3 {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .menu-toggle:checked ~ .menu-items {
+        display: block; /* 체크박스가 checked일 때 메뉴 표시 */
+    }
+    .main{
+        margin-top: 0;
+    }
+    .main-container {
+        grid-template-columns: 1fr; /* 모바일에서는 한 열로 표시 */
+        
+    }
+    .main-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-image {
+        justify-content: center;
+        align-items: center;
+    }
+    .project-container {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: center;
+        gap: 2rem; /* 간격 조정 */
+    }
+    .project-container h2{
+        margin-bottom: 4rem;
+    }
+}
+/* 태블릿 (768px ~ 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    html { 
+        font-size: 80%; 
+    }
+    .navi{
+        box-sizing: border-box;
+    }
+    .nav_menu{
+        display: flex;
+        align-items: center;
+        gap: 2rem; /* 간격 조정 */
+    }
+    .navibar{
+        padding: 0 6rem;
+        width: 100%; /* 너비 자동 조정 */
+    }
+}
+
+/* 데스크톱 (1024px 이상) */
+@media (min-width: 1024px) {
+    .nav_menu {
+        display: flex;
+        align-items: center;
+        gap: 2rem; /* 간격 조정 */
+    }
+}
 
 ```
 
@@ -317,17 +789,40 @@
 
 1. **네비게이션 기능**
     ```javascript
-
+        // 네비게이션 바 클릭 시 스크롤 이동
+        document.querySelectorAll('.navibar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     ```
 
 2. **인터렉티브 기능**
     ```javascript
-
+        // 다크 모드 토글
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('darkModeToggle');
+            toggleBtn.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                if(document.body.classList.contains('dark-mode')) {
+                    toggleBtn.textContent = '☀️ 라이트모드';
+                } else {
+                    toggleBtn.textContent = '🌙 다크모드';
+                }
+            });
+        });
     ```
 
 3. **애니메이션 구현**
     ```javascript
+        
 
+        
     ```
 
 4. **폼 처리**
