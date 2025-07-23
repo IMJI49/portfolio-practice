@@ -49,24 +49,48 @@
     .menu-toggle:checked ~ .menu-items {
         display: block; /* 체크박스가 checked일 때 메뉴 표시 */
     }
+    .main{
+        margin-top: 0;
+    }
+    .main-container {
+        grid-template-columns: 1fr; /* 모바일에서는 한 열로 표시 */
+        
+    }
+    .main-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-image {
+        justify-content: center;
+        align-items: center;
+    }
+    .project-container {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: center;
+        gap: 2rem; /* 간격 조정 */
+    }
+    .project-container h2{
+        margin-bottom: 4rem;
+    }
 }
 /* 태블릿 (768px ~ 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
     html { 
         font-size: 80%; 
     }
-    .container {
-        width: 100%;
-        margin: 0 auto;
+    .navi{
+        box-sizing: border-box;
     }
-    .nav_menu {
+    .nav_menu{
         display: flex;
-        flex-direction: column; /* 세로 방향으로 정렬 */
         align-items: center;
-        gap: 1rem; /* 간격 조정 */
+        gap: 2rem; /* 간격 조정 */
     }
-    .hamburger {
-        display: none; /* 태블릿에서는 햄버거 메뉴 숨김 */
+    .navibar{
+        padding: 0 6rem;
+        width: 100%; /* 너비 자동 조정 */
     }
 }
 
@@ -76,8 +100,5 @@
         display: flex;
         align-items: center;
         gap: 2rem; /* 간격 조정 */
-    }
-    .hamburger {
-        display: none; /* 데스크톱에서는 햄버거 메뉴 숨김 */
     }
 }
