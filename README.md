@@ -81,12 +81,21 @@
                     </a>
                     </div>
                     <div class="port_name">
-                        <h1>임지훈</h1>
+                        <h3>임지훈</h3>
                     </div>
                     <button class="btn-follow"> 팔로우 버튼</button>
+                    <button id="darkModeToggle" class="dark-mode-toggle">🌙 다크모드</button>
                 </div>
+                
                 <div id="nav-menu">
-                    <ul class="nav_menu">
+                    <!-- 햄버거 버튼 -->
+                    <div class="location">
+                        <button class="hamburger-button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <ul class="nav_menu">
                     <!-- 앵커 링크 spa처럼 섹션 이동 -->
                         <li><a class="menu-box" href="#home">홈</a></li>
                         <li><a class="menu-box" href="#about">소개</a></li>
@@ -94,12 +103,16 @@
                         <li><a class="menu-box" href="#proj">프로젝트</a></li>
                         <li><a class="menu-box" href="#contact">연락처</a></li>
                     </ul>
+                    </div>
+                    
+                    
                 </div>
             </nav>
         </div>
         
 
         <div class="content">
+            
             <!-- 메인 화면 -->
             <section class="main" >
                 <div class="main-container">
@@ -107,7 +120,11 @@
                         <div class="main-content">
                             <h3 class="main-title">안녕하세요 저는 자바 풀스택 개발자  <span class="highlight">임지훈</span>입니다.</h3>
                             <h4 class="main-subtitle">Java FullStack</h4>
-                            <p class="main-description">사용자 경험을 중시하며 클린하고 효율적인 코드를 작성하기 위해 노력합니다.</p>
+                            <p class="main-description">
+                                사용자 경험을 중시하며 클린하고 효율적인 코드를 작성하기 위해 노력합니다.<br>
+                                
+                            </p>
+
                         </div>
                         <div class="main-description">
                             <p></p>
@@ -248,6 +265,14 @@
             <button onclick="" class="btn1-footer"><a href="">🔗linkedin</a></button>
             <button onclick="" class="btn1-footer"><a href="mailto:ansml4956@gmail.com">📧email</a></button>
         </div>
+        <div class="footer-lang">
+            <label for="lang-select">언어 선택:</label>
+            <select id="lang-select" onchange="changeLanguage(this.value)">
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        
     </footer>
     <script src="js/script.js"></script>
     <script src="js/animation.js"></script>
@@ -288,6 +313,18 @@
 
 3. **스타일링**
 ```css
+
+/* 전역에서 사용할 CSS 변수 설정 - 색상값 정의, 일관성 향상 */
+:root{
+    --primary-color : #0a1029;
+    --secondary-color : #48285e;
+    --first-color : #3aacc9;
+    --second-color : #69e4a0;
+    --third-color : #f7c6c7;
+    --fourth-color : #ebf18d;
+    --light : #f1f1f1;
+    --text-color : rgb(2,7,21);
+}
 /* 전역 변수 리셋 */
 *{
     margin: 0;
@@ -328,6 +365,7 @@ ul{
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0 8rem;
+    padding-right: 12rem;
     height: 9rem;
     justify-content: space-between;
     align-items: center;
@@ -339,6 +377,9 @@ ul{
     box-shadow: 0 2px 20px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
     color: #000;
+}
+.port_name{
+    text-align: center;
 }
 .btn-follow{
     cursor: pointer;
@@ -410,6 +451,30 @@ section{
 }
 .content{
     min-height: 70vh;
+}
+/* 다크 모드 설정*/
+.dark-mode {
+    background-color: #181818;
+    color: #f1f1f1;
+}
+.dark-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    z-index: 999;
+    border-radius: 40px;
+    border: none;
+    padding: 1rem 0.3rem;
+    background: var(--light);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.dark-mode .container,
+.dark-mode .content,
+.dark-mode footer {
+    background-color: var(--primary-color);
+    color: var(--light);
 }
 .main{
     margin-top: 70px;
@@ -664,28 +729,22 @@ footer{
     margin: 2px 6px;
     padding: 6px;
 }
+.footer-lang{
+    margin-top: 0.5rem;
+}
 ```
 4. **반응형 디자인**
 ``` CSS
+/* 모바일 (최대 767px) */
 /* 모바일 (최대 767px) */
 @media (max-width: 767px) {
     html { 
         font-size: 62.5%; 
     }
-    .navibar{
-        background: none;
-    }
     .nav_logo{
         display: none; /* 모바일에서는 로고 숨김 */
     }
-    .nav-menu {
-        position: relative;
-        display: block;
-        width: 30px;
-    }
-    .menu-toggle {
-        display: none;
-    }
+    
     .nav_menu {
         display: none; /* 기본적으로 숨김 */
         position: absolute;
@@ -694,29 +753,63 @@ footer{
         background: var(--primary-color);
         width: 100%;
         padding: 1rem;
-        flex-direction: column; /* 세로 방향으로 정렬 */
+        flex-direction: end;
     }
-    .line {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background-color: black;
-        transition: transform 0.3s ease;
+    .navibar{
+        background: none;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        align-items: flex-end;
+        justify-content: center;
+        right: 0.5rem;
+        padding-right: 4rem;
     }
-    .menu-toggle:checked + .menu-button .line1 {
-        transform: translateY(8px) rotate(45deg);
+    .hamburger-button {
+      /* 스타일링 */
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 24px;
+      width: 30px;
     }
-
-    .menu-toggle:checked + .menu-button .line2 {
-        opacity: 0;
+    .hamburger-button span {
+      /* 햄버거 아이콘 모양 */
+      display: block;
+      height: 2px;
+      background-color: black;
+      transition: all 0.3s ease-in-out;
     }
-
-    .menu-toggle:checked + .menu-button .line3 {
-        transform: translateY(-8px) rotate(-45deg);
+    .navibar.blur{
+        box-shadow: none;
     }
-
-    .menu-toggle:checked ~ .menu-items {
-        display: block; /* 체크박스가 checked일 때 메뉴 표시 */
+    .navibar.blur a{
+        box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .nav_menu.active {
+      display: flex; /* 활성화 시 표시 */
+      flex-direction: column; /* 세로 방향으로 정렬 */
+      margin-top: 6rem;
+      padding-top: 2.5rem;
+      right: 0.5rem;
+      width: 10rem;
+      height: 30rem;
+      gap: 4rem;
+      z-index: 1000; /* 다른 요소 위에 표시 */
+      background: transparent;
+    }
+    /* 클릭 시 햄버거 -> X 변환 */
+    .hamburger-button.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-button.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-button.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
     .main{
         margin-top: 0;
@@ -756,10 +849,15 @@ footer{
         display: flex;
         align-items: center;
         gap: 2rem; /* 간격 조정 */
+        margin-right: 3rem;
     }
     .navibar{
         padding: 0 6rem;
         width: 100%; /* 너비 자동 조정 */
+    }
+    .port_name{
+        text-align: center;
+        margin-top: 0.7rem;
     }
 }
 
@@ -816,11 +914,184 @@ footer{
                 }
             });
         });
+        // 클릭 시 알람
+        function clickalert(text){
+            alert(text + "을/를 클릭했습니다.");
+        }
+
+        // 스크롤 시 네비게이션 바에 블러 효과 추가
+        window.addEventListener('scroll', function() {
+            const navibar = document.querySelector('.navibar');
+            const menuBox = document.querySelectorAll('.menu-box');
+            if (window.scrollY > 0) {
+                navibar.classList.add('blur');
+                menuBox.forEach(box => {
+                    box.classList.add('blur');
+                });
+            } else {
+                navibar.classList.remove('blur');
+                menuBox.forEach(box => {
+                    box.classList.remove('blur');
+                });
+            }
+        });
+        // 언어 변경 함수
+        function changeLanguage(lang) {
+            const translations = {
+                ko: {
+                    home: "홈",
+                    about: "소개",
+                    skills: "기술",
+                    proj: "프로젝트",
+                    contact: "연락처",
+                    follow: "팔로우 버튼",
+                    mainTitle: "안녕하세요 저는 자바 풀스택 개발자 <span class=\"highlight\">임지훈</span>입니다.",
+                    mainSubtitle: "Java FullStack",
+                    mainDescription: "사용자 경험을 중시하며 클린하고 효율적인 코드를 작성하기 위해 노력합니다.",
+                    resume: "이력서 보기",
+                    project: "프로젝트 보기",
+                    github: "🐈‍⬛github",
+                    links: "🔗links",
+                    email: "📧email",
+                    footer: "&copy; 2025 임지훈 모든 권리 보유."
+                },
+                en: {
+                    home: "Home",
+                    about: "About",
+                    skills: "Skills",
+                    proj: "Projects",
+                    contact: "Contact",
+                    follow: "Follow",
+                    mainTitle: "Hello, I'm <span class=\"highlight\">Jihoon Lim</span>, a Java Fullstack Developer.",
+                    mainSubtitle: "Java FullStack",
+                    mainDescription: "I focus on user experience and strive to write clean and efficient code.",
+                    resume: "View Resume",
+                    project: "View Projects",
+                    github: "🐈‍⬛github",
+                    links: "🔗links",
+                    email: "📧email",
+                    footer: "&copy; 2025 Jihoon Lim. All rights reserved."
+                }
+            };
+            const t = translations[lang];
+            document.querySelectorAll('.nav_menu li a')[0].textContent = t.home;
+            document.querySelectorAll('.nav_menu li a')[1].textContent = t.about;
+            document.querySelectorAll('.nav_menu li a')[2].textContent = t.skills;
+            document.querySelectorAll('.nav_menu li a')[3].textContent = t.proj;
+            document.querySelectorAll('.nav_menu li a')[4].textContent = t.contact;
+            document.querySelector('.btn-follow').textContent = t.follow;
+            document.querySelector('.main-title').innerHTML = t.mainTitle;
+            document.querySelector('.main-subtitle').textContent = t.mainSubtitle;
+            document.querySelector('.main-description p').textContent = t.mainDescription;
+            document.querySelector('.btn-resume').textContent = t.resume;
+            document.querySelector('.btn-project').textContent = t.project;
+            document.querySelector('.social-link1 a').textContent = t.github;
+            document.querySelector('.social-link2 a').textContent = t.links;
+            document.querySelector('.social-link3 a').textContent = t.email;
+            document.querySelector('footer p').innerHTML = t.footer;
+        }
+
+        document.querySelector('.skill1').addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert(text);
+                }
+            }
+        });
+        // 숫자 1 키로 .skill1 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '1') {
+                const checkbox = document.querySelector('.skill1 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('HTML');
+                }
+            }
+        });
+        // 숫자 2 키로 .skill2 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '2') {
+                const checkbox = document.querySelector('.skill2 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('CSS3');
+                }
+            }
+        });
+        // 숫자 3 키로 .skill3 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '3') {
+                const checkbox = document.querySelector('.skill3 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('JavaScript');
+                }
+            }
+        });
+        // 숫자 4 키로 .skill4 내부 체크박스 활성화 
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '4') {
+                const checkbox = document.querySelector('.skill4 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('Java');
+                }
+            }
+        });
+        // 숫자 5 키로 .skill5 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '5') {
+                const checkbox = document.querySelector('.skill5 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('Spring Boot');
+                }
+            }
+        });
+        // 숫자 6 키로 .skill6 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '6') {
+                const checkbox = document.querySelector('.skill6 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('MySQL');
+                }
+            }
+        });
+        // 숫자 7 키로 .skill7 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '7') {
+                const checkbox = document.querySelector('.skill7 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('Git/GitHub');
+                }
+            }
+        });
+        // 숫자 8 키로 .skill8 내부 체크박스 활성화
+        document.addEventListener('keydown',function(event) {
+            if (event.key === '8') {
+                const checkbox = document.querySelector('.skill8 input[type="checkbox"]');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    clickalert('JSP');
+                }
+            }
+        }); 
+
     ```
 
 3. **애니메이션 구현**
     ```javascript
-        
+        const hamburgerButton = document.querySelector('.hamburger-button');
+    const menu = document.querySelector('.nav_menu');
+    
+    hamburgerButton.addEventListener('click', () => {
+      hamburgerButton.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
 
         
     ```
