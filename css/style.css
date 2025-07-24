@@ -63,6 +63,9 @@ ul{
     transition: all 0.3s ease;
     color: #000;
 }
+.port_name{
+    text-align: center;
+}
 .btn-follow{
     cursor: pointer;
 }
@@ -410,4 +413,7 @@ footer{
 .btn1-footer{
     margin: 2px 6px;
     padding: 6px;
+}
+.footer-lang{
+    margin-top: 0.5rem;
 }

@@ -96,6 +96,10 @@
         padding: 0 6rem;
         width: 100%; /* 너비 자동 조정 */
     }
+    .port_name{
+    text-align: center;
+    margin-top: 0.7rem;
+}
 }
 
 /* 데스크톱 (1024px 이상) */
