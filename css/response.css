@@ -3,23 +3,10 @@
     html { 
         font-size: 62.5%; 
     }
-    .navibar{
-        background: none;
-    }
     .nav_logo{
         display: none; /* 모바일에서는 로고 숨김 */
     }
-    .nav-menu {
-        position: relative;
-        display: block;
-        width: 30px;
-    }
-    .menu-toggle {
-        display: none;
-    }
-    .navibar.blur{
-        display: none;
-    }
+    
     .nav_menu {
         display: none; /* 기본적으로 숨김 */
         position: absolute;
@@ -28,29 +15,63 @@
         background: var(--primary-color);
         width: 100%;
         padding: 1rem;
-        flex-direction: column; /* 세로 방향으로 정렬 */
+        flex-direction: end;
     }
-    .line {
-        display: block;
-        width: 30px;
-        height: 3px;
-        background-color: black;
-        transition: transform 0.3s ease;
+    .navibar{
+        background: none;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        align-items: flex-end;
+        justify-content: center;
+        right: 0.5rem;
+        padding-right: 4rem;
     }
-    .menu-toggle:checked + .menu-button .line1 {
-        transform: translateY(8px) rotate(45deg);
+    .hamburger-button {
+      /* 스타일링 */
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 24px;
+      width: 30px;
     }
-
-    .menu-toggle:checked + .menu-button .line2 {
-        opacity: 0;
+    .hamburger-button span {
+      /* 햄버거 아이콘 모양 */
+      display: block;
+      height: 2px;
+      background-color: black;
+      transition: all 0.3s ease-in-out;
     }
-
-    .menu-toggle:checked + .menu-button .line3 {
-        transform: translateY(-8px) rotate(-45deg);
+    .navibar.blur{
+        box-shadow: none;
     }
-
-    .menu-toggle:checked ~ .menu-items {
-        display: block; /* 체크박스가 checked일 때 메뉴 표시 */
+    .navibar.blur a{
+        box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .nav_menu.active {
+      display: flex; /* 활성화 시 표시 */
+      flex-direction: column; /* 세로 방향으로 정렬 */
+      margin-top: 6rem;
+      padding-top: 2.5rem;
+      right: 0.5rem;
+      width: 10rem;
+      height: 30rem;
+      gap: 4rem;
+      z-index: 1000; /* 다른 요소 위에 표시 */
+      background: transparent;
+    }
+    /* 클릭 시 햄버거 -> X 변환 */
+    .hamburger-button.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-button.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-button.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
     .main{
         margin-top: 0;
@@ -97,9 +118,9 @@
         width: 100%; /* 너비 자동 조정 */
     }
     .port_name{
-    text-align: center;
-    margin-top: 0.7rem;
-}
+        text-align: center;
+        margin-top: 0.7rem;
+    }
 }
 
 /* 데스크톱 (1024px 이상) */

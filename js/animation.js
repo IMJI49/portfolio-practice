@@ -34,3 +34,11 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+
+const hamburgerButton = document.querySelector('.hamburger-button');
+    const menu = document.querySelector('.nav_menu');
+    
+    hamburgerButton.addEventListener('click', () => {
+      hamburgerButton.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
