@@ -90,6 +90,7 @@
         display: flex;
         align-items: center;
         gap: 2rem; /* 간격 조정 */
+        margin-right: 3rem;
     }
     .navibar{
         padding: 0 6rem;
