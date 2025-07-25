@@ -81,6 +81,12 @@ ul{
     align-items: center;
     gap: 2rem;
 }
+.hamburger-button {
+    display: none; /* 기본적으로 숨김 */
+    cursor: pointer;
+    position: relative;
+    z-index: 1001; /* navibar보다 위에 표시 */
+}
 .nav_menu a {
     text-decoration: none;
     background: var(--secondary-color);
@@ -92,6 +98,9 @@ ul{
     height: 2rem;
     border-radius: 20px;
     position: relative;
+}
+.navibar.blur a{
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
 }
 .menu-box.blur {
     background: transparent;
